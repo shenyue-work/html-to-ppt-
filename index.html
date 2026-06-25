@@ -83,7 +83,7 @@
           </tr>
           <tr>
             <td>个人经验不可复制</td>
-            <td>脚本、MCP、文档沉淀为项目资产</td>
+            <td>约束和校验，避免不符合项目规范</td>
           </tr>
         </tbody>
       </table>
@@ -399,6 +399,44 @@
       </aside>
     </section>
 
+    <section class="slide" data-title="Risk">
+      <p class="kicker">11 · Risk Control</p>
+      <h2 class="h2">风险控制：文档、凭证、生成结果都要<span class="accent">可追踪</span></h2>
+      <table class="table mt-l">
+        <thead>
+          <tr>
+            <th>风险点</th>
+            <th>控制方式</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>接口文档不准确</td>
+            <td>Torna 作为源头，生成后仍由前端 review 关键字段和调用方式。</td>
+          </tr>
+          <tr>
+            <td>页面接口关系不准确</td>
+            <td>Confluence 同步输出匹配统计和 Diff，变化可追踪、可回看。</td>
+          </tr>
+          <tr>
+            <td>生成代码不符合项目规范</td>
+            <td>CLAUDE.md、rules、模板共同约束，必要时再做 code-review / verify。</td>
+          </tr>
+          <tr>
+            <td>工具链执行异常</td>
+            <td>保留 raw / JSON 中间产物，问题可定位到拉取、解析、匹配或生成阶段。</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="deck-footer"><span>第 13 页讲预期边界，这一页讲流程风险如何控制</span><span class="slide-number" data-current="14"
+          data-total="14"></span></div>
+      <aside class="notes">
+        <p>前面一页讲的是 AI 提效的真实边界，这一页讲风险控制。重点不是再说 AI 不能替代开发，而是说明这套流程如何做到可追踪、可排查。</p>
+        <p>第一类风险是文档准确性。接口文档以 Torna 为源头，页面接口关系以 Confluence 为源头，但生成后仍然需要前端 review 关键字段和调用方式。</p>
+        <p>第二类风险是同步和生成过程。Confluence 同步会输出匹配统计和 Diff，中间也保留 raw 或 JSON 产物，所以问题可以定位到拉取、解析、匹配或生成阶段。</p>
+        <p>第三类是安全风险。Token 和 Cookie 都放在用户本地配置目录，不进 Git，也不进入对话上下文。整体目标是让 AI 工作流可用，同时保证过程可追踪、凭证可控、结果可审核。</p>
+      </aside>
+    </section>
     <section class="slide" data-title="Value">
       <p class="kicker">12 · Value</p>
       <h2 class="h2">已形成的价值：从个人使用 AI 到<span class="accent">项目级资产</span></h2>
@@ -430,7 +468,6 @@
         <p>第四是资产沉淀。这些不是一次性的提示词，而是项目里的脚本、MCP、文档和规则，后续可以继续维护，并随着 HRMS 页面开发不断迭代。</p>
       </aside>
     </section>
-
     <section class="slide" data-title="Roadmap">
       <p class="kicker">13 · Next Step</p>
       <h2 class="h2">下一步：围绕 HRMS 继续<span class="accent">迭代优化</span></h2>
@@ -461,48 +498,6 @@
         <p>第三，补齐校验清单。围绕 BaseVxeTable、分页、按钮位置、字段来源、下拉来源这些项目规范，持续补充检查规则。</p>
         <p>第四，小步复盘效果。不是一次性把 AI 说得很满，而是每做几个页面复盘一次，看看哪些环节确实省时，哪些地方仍然需要人工补强。</p>
         <p>总结一下，这套实践的核心价值是：把项目知识结构化，把重复流程自动化，把 AI 使用工程化。但它仍然需要持续迭代，也需要开发在业务理解、联调和质量交付上继续把关。谢谢大家。</p>
-      </aside>
-    </section>
-    <section class="slide" data-title="Risk">
-      <p class="kicker">14 · Risk Control</p>
-      <h2 class="h2">风险控制：文档、凭证、生成结果都要<span class="accent">可追踪</span></h2>
-      <table class="table mt-l">
-        <thead>
-          <tr>
-            <th>风险点</th>
-            <th>控制方式</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>接口文档不准确</td>
-            <td>Torna 作为源头，生成后仍由前端 review 关键字段和调用方式。</td>
-          </tr>
-          <tr>
-            <td>页面接口关系不准确</td>
-            <td>Confluence 同步输出匹配统计和 Diff，变化可追踪、可回看。</td>
-          </tr>
-          <tr>
-            <td>生成代码不符合项目规范</td>
-            <td>CLAUDE.md、rules、模板共同约束，必要时再做 code-review / verify。</td>
-          </tr>
-          <tr>
-            <td>Token / Cookie 泄露</td>
-            <td>凭证放用户本地配置目录，不进 Git、不进入对话上下文。</td>
-          </tr>
-          <tr>
-            <td>工具链执行异常</td>
-            <td>保留 raw / JSON 中间产物，问题可定位到拉取、解析、匹配或生成阶段。</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="deck-footer"><span>第 13 页讲预期边界，这一页讲流程风险如何控制</span><span class="slide-number" data-current="14"
-          data-total="14"></span></div>
-      <aside class="notes">
-        <p>前面一页讲的是 AI 提效的真实边界，这一页讲风险控制。重点不是再说 AI 不能替代开发，而是说明这套流程如何做到可追踪、可排查。</p>
-        <p>第一类风险是文档准确性。接口文档以 Torna 为源头，页面接口关系以 Confluence 为源头，但生成后仍然需要前端 review 关键字段和调用方式。</p>
-        <p>第二类风险是同步和生成过程。Confluence 同步会输出匹配统计和 Diff，中间也保留 raw 或 JSON 产物，所以问题可以定位到拉取、解析、匹配或生成阶段。</p>
-        <p>第三类是安全风险。Token 和 Cookie 都放在用户本地配置目录，不进 Git，也不进入对话上下文。整体目标是让 AI 工作流可用，同时保证过程可追踪、凭证可控、结果可审核。</p>
       </aside>
     </section>
 
